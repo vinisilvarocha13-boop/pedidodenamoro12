@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Quer namorar comigo? ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+}
+
+/* Fundo */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-3;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+animation:slide 15s infinite;
+}
+
+.slide:nth-child(1){
+background-image:url("foto1.png.jpeg");
+animation-delay:0s;
+}
+
+.slide:nth-child(2){
+background-image:url("foto2.png.jpeg");
+animation-delay:5s;
+}
+
+.slide:nth-child(3){
+background-image:url("foto3.png.jpeg");
+animation-delay:10s;
+}
+
+@keyframes slide{
+0%{opacity:0;}
+8%{opacity:1;}
+30%{opacity:1;}
+40%{opacity:0;}
+100%{opacity:0;}
+}
+
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+z-index:-2;
+}
+
+/* Caixa */
+
+.card{
+
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:25px;
+text-align:center;
+color:white;
+width:90%;
+max-width:380px;
+box-shadow:0 0 30px rgba(0,0,0,.4);
+
+}
+
+h1{
+font-size:34px;
+margin-bottom:20px;
+text-shadow:2px 2px 10px black;
+}
+
+p{
+margin-bottom:25px;
+font-size:18px;
+}
+
+/* Botões */
+
+.botoes{
+display:flex;
+justify-content:center;
+gap:15px;
+align-items:center;
+position:relative;
+height:70px;
+}
+
+button{
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+transition:.3s;
+}
+
+#sim{
+
+background:#ff3b82;
+color:white;
+margin-right:15px;
+}
+
+#sim:hover{
+transform:scale(1.08);
+}
+
+#nao{
+background:white;
+color:#ff3b82;
+}
+
+/* Mensagem */
+
+#mensagem{
+
+margin-top:20px;
+font-size:23px;
+font-weight:bold;
+color:#fff;
+}
+
+/* Corações */
+
+.heart{
+
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear forwards;
+pointer-events:none;
+
+}
+
+@keyframes fall{
+
+to{
+
+transform:translateY(110vh);
+opacity:0;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+<div class="slide"></div>
+<div class="slide"></div>
+<div class="slide"></div>
+</div>
+
+<div class="overlay"></div>
+
+<div class="card">
+
+<h1>❤️ Quer namorar comigo? ❤️</h1>
+
+<p>
+Você é a pessoa que faz meus dias mais felizes. 💖
+</p>
+
+<div class="botoes">
+
+<button id="sim">SIM ❤️</button>
+
+<button id="nao">NÃO 😅</button>
+
+</div>
+
+<div id="mensagem"></div>
+
+</div>
+
+<script>
+
+// Botão SIM
+
+document.getElementById("sim").onclick=function(){
+
+document.getElementById("mensagem").innerHTML=
+"❤️ Eu te amo! ❤️";
+
+}
+
+// Botão NÃO fugindo
+
+const nao=document.getElementById("nao");
+
+function fugir(){
+
+const largura=window.innerWidth-120;
+
+const altura=window.innerHeight-80;
+
+const x=Math.random()*largura;
+
+const y=Math.random()*altura;
+
+nao.style.left=x+"px";
+nao.style.top=y+"px";
+
+}
+
+nao.onclick=function(){document.getElementById("mensagem").innerHTML="Você é uma peidorreira 😂";};
+
+// Corações
+
+function criarCoracao(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*25)+"px";
+
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),8000);
+
+}
+
+setInterval(criarCoracao,250);
+
+</script>
+
+</body>
+</html>
